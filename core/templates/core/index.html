@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<link rel="stylesheet" href="{% static 'core/styles.css' %}">
+
+<button onclick="toggleDarkMode()" style="margin-top: 20px;">
+    🌗 Cambiar modo
+</button>
+
+<script>
+    function toggleDarkMode() {
+        document.body.classList.toggle('dark-mode');
+    }
+</script>
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>Maíz Yield Calculator</title>
+</head>
+
+<body>
+    <h1>🧮 Calculadora de Producción de Maíz 🌽</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Calcular</button>
+    </form>
+
+    {% if result %}
+    <h2>Resultado:</h2>
+    <ul>
+        <li>Total de matas: {{ result.total_plants }}</li>
+        <li>Total de elotes: {{ result.total_cobs }}</li>
+        <li>Ganancia estimada: ${{ result.total_income }}</li>
+    </ul>
+    {% endif %}
+</body>
+
+</html>
