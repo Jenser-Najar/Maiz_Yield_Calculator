@@ -3,7 +3,7 @@ services:
     name: maize-calculator
     env: python
     buildCommand: "pip install -r requirements.txt"
-    startCommand: "gunicorn maiz_yield_calculator.wsgi:application"
+    startCommand: gunicorn maiz_yield_calculator.wsgi:application
     envVars:
       - key: DJANGO_SETTINGS_MODULE
         value: maiz_yield_calculator.settings
