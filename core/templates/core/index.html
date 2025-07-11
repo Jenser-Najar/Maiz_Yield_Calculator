@@ -4,14 +4,32 @@
 <link rel="stylesheet" href="{% static 'core/styles.css' %}">
 
 <button onclick="toggleDarkMode()" style="margin-top: 20px;">
-    🌗 Cambiar modo
+    🌗 Change mode
 </button>
 
 <script>
+    // Al cargar la página, aplicamos el modo oscuro si estaba activado
+    const darkModeSetting = localStorage.getItem('darkMode');
+
+    if (darkModeSetting === 'enabled') {
+        document.body.classList.add('dark-mode');
+    } else {
+        document.body.classList.remove('dark-mode');
+    }
+
+
     function toggleDarkMode() {
         document.body.classList.toggle('dark-mode');
+
+        // Guardamos el estado del modo en localStorage
+        if (document.body.classList.contains('dark-mode')) {
+            localStorage.setItem('darkMode', 'enabled');
+        } else {
+            localStorage.setItem('darkMode', 'disabled');
+        }
     }
 </script>
+
 
 
 <head>
@@ -20,20 +38,20 @@
 </head>
 
 <body>
-    <h1>🧮 Calculadora de Producción de Maíz 🌽</h1>
+    <h1>🧮 Corn Production Calculator 🌽</h1>
 
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Calcular</button>
+        <button type="submit">Calculate</button>
     </form>
 
     {% if result %}
-    <h2>Resultado:</h2>
+    <h2>Result:</h2>
     <ul>
-        <li>Total de matas: {{ result.total_plants }}</li>
-        <li>Total de elotes: {{ result.total_cobs }}</li>
-        <li>Ganancia estimada: ${{ result.total_income }}</li>
+        <li>Total bushes: {{ result.total_plants }}</li>
+        <li>Total corn on the cob: {{ result.total_cobs }}</li>
+        <li>Estimated profit: ${{ result.total_income }}</li>
     </ul>
     {% endif %}
 </body>
