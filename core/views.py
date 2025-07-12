@@ -10,9 +10,9 @@ def calculator_view(request):
         if form.is_valid():
             data = form.save(commit=False)
             result = {
-                'total_plants': data.total_plants(),
-                'total_cobs': data.total_cobs(),
-                'total_income': data.total_income(),
+                'total_plants': f"{data.total_plants():.2f}",
+                'total_cobs': f"{data.total_cobs():.2f}",
+                'total_income': f"{data.total_income():.2f}",
             }
     else:
         form = ProductionDataForm()
