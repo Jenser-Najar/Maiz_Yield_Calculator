@@ -1,10 +1,11 @@
 body {
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #f9f9f9;
+    font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+    background: linear-gradient(120deg, #f9f9f9 0%, #e0e7ff 100%);
     color: #333;
     padding: 2rem;
     max-width: 700px;
     margin: auto;
+    min-height: 100vh;
 }
 
 h1 {
@@ -13,36 +14,66 @@ h1 {
     margin-bottom: 2rem;
 }
 
+
+.card {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2rem 1.5rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.12);
+    margin-bottom: 2rem;
+    backdrop-filter: blur(2px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
 form {
-    background-color: white;
-    padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
 }
 
 form p {
     margin-bottom: 1rem;
 }
 
+
 input[type="text"],
 input[type="number"] {
     width: 100%;
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: 0.7rem 1rem;
+    border: 1.5px solid #cfd8dc;
+    border-radius: 6px;
+    background: #f4f7fa;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    transition: border 0.2s, box-shadow 0.2s;
 }
 
+input[type="text"]:focus,
+input[type="number"]:focus {
+    border: 1.5px solid #7c3aed;
+    outline: none;
+    box-shadow: 0 0 0 2px #ede9fe;
+    background: #fff;
+}
+
+
 button {
-    background-color: #2c3e50;
-    color: white;
-    padding: 0.6rem 1.2rem;
+    background: linear-gradient(90deg, #7c3aed 0%, #38bdf8 100%);
+    color: #fff;
+    padding: 0.7rem 1.5rem;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    box-shadow: 0 2px 8px rgba(124, 58, 237, 0.08);
+    transition: background 0.2s, transform 0.1s;
 }
 
 button:hover {
-    background-color: #1a252f;
+    background: linear-gradient(90deg, #38bdf8 0%, #7c3aed 100%);
+    transform: translateY(-2px) scale(1.03);
 }
 
 h2 {
@@ -50,39 +81,104 @@ h2 {
     color: #27ae60;
 }
 
+
 ul {
-    background-color: #fff;
-    padding: 1rem;
-    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 1.2rem;
+    border-radius: 12px;
     list-style: none;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 16px rgba(31, 38, 135, 0.07);
+    margin-top: 1.5rem;
 }
 
 body {
     transition: background-color 0.3s, color 0.3s;
 }
 
+
 .dark-mode {
-    background-color: #1e1e1e;
+    background: linear-gradient(120deg, #1e1e1e 0%, #232946 100%);
     color: #f1f1f1;
 }
 
+.dark-mode .card {
+    background: rgba(34, 34, 44, 0.98);
+    border: 1px solid #232946;
+}
+
 .dark-mode form {
-    background-color: #2c2c2c;
+    background: transparent;
 }
 
 .dark-mode input[type="text"],
 .dark-mode input[type="number"] {
-    background-color: #3a3a3a;
+    background: #232946;
     color: #fff;
-    border: 1px solid #666;
+    border: 1.5px solid #7c3aed;
+}
+
+.dark-mode input[type="text"]:focus,
+.dark-mode input[type="number"]:focus {
+    background: #232946;
+    border: 1.5px solid #38bdf8;
+    box-shadow: 0 0 0 2px #232946;
 }
 
 .dark-mode button {
-    background-color: #555;
-    color: white;
+    background: linear-gradient(90deg, #232946 0%, #7c3aed 100%);
+    color: #fff;
+}
+
+.dark-mode button:hover {
+    background: linear-gradient(90deg, #7c3aed 0%, #232946 100%);
 }
 
 .dark-mode ul {
-    background-color: #2a2a2a;
+    background: rgba(34, 34, 44, 0.98);
+    border: 1px solid #232946;
+}
+
+@media (max-width: 600px) {
+
+    html,
+    body {
+        padding: 0.5rem;
+        max-width: 100vw;
+        width: 100vw;
+        overflow-x: hidden;
+        box-sizing: border-box;
+    }
+
+    .card {
+        padding: 1rem 0.5rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    form {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+        width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    button {
+        width: 100%;
+        font-size: 1rem;
+    }
+
+    #result-container,
+    ul {
+        width: 100%;
+        box-sizing: border-box;
+    }
 }

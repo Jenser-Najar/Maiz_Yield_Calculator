@@ -1,33 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 {% load static %}
+
 <link rel="stylesheet" href="{% static 'core/styles.css' %}">
 
-<button onclick="toggleDarkMode()" style="margin-top: 20px;">
+<button id="toggle-dark-mode" style="margin-top: 20px;">
     🌗 Change mode
 </button>
 
 <script>
-    // Al cargar la página, aplicamos el modo oscuro si estaba activado
-    const darkModeSetting = localStorage.getItem('darkMode');
-
-    if (darkModeSetting === 'enabled') {
-        document.body.classList.add('dark-mode');
-    } else {
-        document.body.classList.remove('dark-mode');
-    }
-
-
-    function toggleDarkMode() {
-        document.body.classList.toggle('dark-mode');
-
-        // Guardamos el estado del modo en localStorage
-        if (document.body.classList.contains('dark-mode')) {
-            localStorage.setItem('darkMode', 'enabled');
+    // Dark mode logic (can be moved to a separate JS file if desired)
+    document.addEventListener('DOMContentLoaded', function () {
+        const darkModeSetting = localStorage.getItem('darkMode');
+        if (darkModeSetting === 'enabled') {
+            document.body.classList.add('dark-mode');
         } else {
-            localStorage.setItem('darkMode', 'disabled');
+            document.body.classList.remove('dark-mode');
         }
-    }
+        document.getElementById('toggle-dark-mode').onclick = function () {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        };
+    });
 </script>
 
 
@@ -41,20 +39,13 @@
 <body>
     <h1>🧮 Corn Production Calculator 🌽</h1>
 
-    <form method="post">
+    <form method="post" id="calculator-form">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Calculate</button>
     </form>
-
-    {% if result %}
-    <h2>Result:</h2>
-    <ul>
-        <li>Total bushes: {{ result.total_plants }}</li>
-        <li>Total corn on the cob: {{ result.total_cobs }}</li>
-        <li>Estimated profit: ${{ result.total_income }}</li>
-    </ul>
-    {% endif %}
+    <div id="result-container"></div>
 </body>
+<script src="{% static 'core/calculator.js' %}"></script>
 
 </html>

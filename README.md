@@ -1,1 +1,0 @@
-# Maiz_Yield_Calculator
